@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DndContext, closestCorners } from "@dnd-kit/core";
-import DraggableArtwork from "./dropSlot/index.jsx";
-import DroppableSlot from "./dragSlot/index.jsx";
+import DraggableArtwork from "./dragSlot/index.jsx";
+import DroppableSlot from "./dropSlot/index.jsx";
 import getArtworksData from "../../data/artworksData";
 import "./styles.css";
 
