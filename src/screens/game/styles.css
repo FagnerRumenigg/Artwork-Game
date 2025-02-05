@@ -1,0 +1,65 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.timeline {
+  width: 80%;
+  height: 100px;
+  border: 2px dashed gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  position: relative; /* Adiciona posição para interações de drag */
+}
+
+.timeline-slot {
+  width: 20%;
+  height: 80%;
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+}
+
+.timeline-slot:hover {
+  background-color: #e0e0e0; /* Destaca o slot ao passar o mouse */
+}
+
+.empty-slot {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+/* Estilo para o item sendo arrastado */
+.artwork-grid .artwork-card {
+  cursor: grab; /* Mostra o ícone de 'mão' ao passar sobre a obra */
+}
+
+.artwork-grid .artwork-card:active {
+  cursor: grabbing; /* Muda para 'mão presa' quando está sendo arrastado */
+}
+
+.artwork-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+  gap: 10px;
+  width: 80%;
+}
+
+/* Estilo para as áreas de drop */
+.timeline-slot[data-over="true"] {
+  border-color: #00ff00; /* Destaca a borda se o item for solto ali */
+  background-color: rgba(0, 255, 0, 0.2); /* Fundo verde para feedback */
+}
+
+/* Estilo de transição para um movimento suave */
+.timeline-slot,
+.artwork-grid {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}

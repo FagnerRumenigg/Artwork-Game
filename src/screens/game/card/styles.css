@@ -1,0 +1,22 @@
+.artwork-card {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.artwork-card img {
+  width: 80px; /* Reduzido para harmonizar com a grid */
+  height: 80px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.artwork-card p {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
