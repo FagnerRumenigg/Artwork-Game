@@ -8,10 +8,14 @@ import "./styles.css";
 function Game() {
   const [artworks, setArtworks] = useState([]);
   const [timeline, setTimeline] = useState([]);
+  // Cria uma referência à lista ordenada (imutável) das obras
+  const [sortedArtworks, setSortedArtworks] = useState([]);
 
   useEffect(() => {
     const artworksData = getArtworksData();
     setArtworks(artworksData);
+    // Armazena a lista ordenada com base no ano
+    setSortedArtworks([...artworksData].sort((a, b) => a.year - b.year));
     setTimeline(Array(artworksData.length).fill(null));
   }, []);
 
@@ -19,11 +23,11 @@ function Game() {
     const { active, over } = event;
     if (!over) return;
 
-    const artworkId = parseInt(active.id);
+    const artworkId = parseInt(active.id, 10);
     const artwork = artworks.find((art) => art.id === artworkId);
     const timelineSlotIndex = parseInt(over.id.replace("slot-", ""), 10);
-    
-    const sortedArtworks = [...artworks].sort((a, b) => a.year - b.year);
+
+    // Usa a lista imutável para determinar o ano correto
     const correctYear = sortedArtworks[timelineSlotIndex].year;
 
     if (artwork.year === correctYear) {

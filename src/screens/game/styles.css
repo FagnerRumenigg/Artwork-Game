@@ -1,65 +1,103 @@
-.game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.timeline {
-  width: 80%;
-  height: 100px;
-  border: 2px dashed gray;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-bottom: 20px;
-  position: relative; /* Adiciona posição para interações de drag */
-}
-
-.timeline-slot {
-  width: 20%;
-  height: 80%;
-  border: 2px solid #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Estilos globais */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
   background-color: #f9f9f9;
 }
 
-.timeline-slot:hover {
-  background-color: #e0e0e0; /* Destaca o slot ao passar o mouse */
+.game-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
 }
 
-.empty-slot {
-  font-size: 24px;
-  color: #ccc;
-  cursor: pointer;
+.game-container h1 {
+  margin-bottom: 20px;
 }
 
-/* Estilo para o item sendo arrastado */
-.artwork-grid .artwork-card {
-  cursor: grab; /* Mostra o ícone de 'mão' ao passar sobre a obra */
+/* Timeline (régua) */
+.timeline-container {
+  position: relative;
+  width: 80%;
+  margin: 40px auto;
+  height: 80px; /* Altura suficiente para os slots */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.artwork-grid .artwork-card:active {
-  cursor: grabbing; /* Muda para 'mão presa' quando está sendo arrastado */
+/* Linha horizontal da timeline */
+.timeline-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  border-top: 2px solid #ccc;
+  transform: translateY(-50%);
+  z-index: 1;
 }
 
+/* Cada slot da timeline (área droppable) */
+.timeline-slot {
+  position: relative;
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border: 2px dashed #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+/* Slot marcado como correto:
+   Aqui removemos o fundo verde e a borda padrão, para que a imagem interna seja exibida com destaque */
+.timeline-slot.correct {
+  background-color: transparent;
+  border: 2px dashed transparent;
+}
+
+/* Estilo para a imagem da obra dentro do slot da timeline */
+.timeline-artwork {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #388e3c;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Grid com todas as obras de arte disponíveis */
 .artwork-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas */
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
   width: 80%;
+  margin: 40px auto;
 }
 
-/* Estilo para as áreas de drop */
-.timeline-slot[data-over="true"] {
-  border-color: #00ff00; /* Destaca a borda se o item for solto ali */
-  background-color: rgba(0, 255, 0, 0.2); /* Fundo verde para feedback */
+/* Cartão que envolve cada obra de arte */
+.artwork-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s;
+  cursor: grab;
 }
 
-/* Estilo de transição para um movimento suave */
-.timeline-slot,
-.artwork-grid {
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+.artwork-card:hover {
+  transform: scale(1.05);
+}
+
+.artwork-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
