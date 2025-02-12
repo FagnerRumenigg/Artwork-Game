@@ -9,7 +9,7 @@ function DraggableArtwork({ artwork }) {
   });
 
   return (
-    <div ref={setNodeRef} {...listeners} {...attributes} className="artwork-card">
+    <div ref={setNodeRef} {...listeners} {...attributes}>
       <ArtworkCard artwork={artwork} />
     </div>
   );

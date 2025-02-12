@@ -1,25 +1,21 @@
-// DroppableSlot/index.jsx
 import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import "./styles.css";
 
 function DroppableSlot({ index, timeline }) {
-  const { setNodeRef } = useDroppable({
-    id: `slot-${index}`,
-  });
-
-  const artwork = timeline[index];
+  const { setNodeRef } = useDroppable({ id: `slot-${index}` });
+  const slotArtwork = timeline[index];
 
   return (
     <div
       ref={setNodeRef}
       id={`slot-${index}`}
-      className={`timeline-slot ${artwork && artwork.correct ? "correct" : ""}`}
+      className={`timeline-slot ${slotArtwork ? "correct" : ""}`}
     >
-      {artwork && artwork.correct && (
+      {slotArtwork && (
         <img
-          src={artwork.image}
-          alt={artwork.title}
+          src={slotArtwork.image}
+          alt={slotArtwork.title}
           className="timeline-artwork"
         />
       )}

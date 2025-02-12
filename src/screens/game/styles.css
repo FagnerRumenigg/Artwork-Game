@@ -1,104 +1,189 @@
-/* Estilos globais */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background-color: #f9f9f9;
-}
-
-.game-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-}
-
-.game-container h1 {
-  margin-bottom: 20px;
-}
-
-/* Timeline (régua) */
-.timeline-container {
-  position: relative;
-  width: 80%;
-  margin: 40px auto;
-  height: 80px; /* Altura suficiente para os slots */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Linha horizontal da timeline */
-.timeline-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  border-top: 2px solid #ccc;
-  transform: translateY(-50%);
-  z-index: 1;
-}
-
-/* Cada slot da timeline (área droppable) */
-.timeline-slot {
-  position: relative;
-  z-index: 2;
-  width: 50px;
-  height: 50px;
-  background-color: #fff;
-  border: 2px dashed #ccc;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: border-color 0.3s, background-color 0.3s;
-}
-
-/* Slot marcado como correto:
-   Aqui removemos o fundo verde e a borda padrão, para que a imagem interna seja exibida com destaque */
-.timeline-slot.correct {
-  background-color: transparent;
-  border: 2px dashed transparent;
-}
-
-/* Estilo para a imagem da obra dentro do slot da timeline */
-.timeline-artwork {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #388e3c;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-/* Grid com todas as obras de arte disponíveis */
-.artwork-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  width: 80%;
-  margin: 40px auto;
-}
-
-/* Cartão que envolve cada obra de arte */
-.artwork-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.2s;
-  cursor: grab;
-}
-
-.artwork-card:hover {
-  transform: scale(1.05);
-}
-
-.artwork-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
-
+/* =========================
+   Estilos Globais
+   ========================= */
+   body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  .game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .game-container h1 {
+    margin-bottom: 20px;
+  }
+  
+  /* =========================
+     Layout do Jogo
+     ========================= */
+  /* Divide a tela em três colunas: lateral esquerda, área central (timeline) e lateral direita */
+  .game-layout {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 20px;
+    align-items: start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* =========================
+     Colunas de Artes (Lateral Esquerda e Direita)
+     ========================= */
+  .artwork-column {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 itens por linha */
+    gap: 10px;
+    justify-items: center;
+  }
+  
+  /* =========================
+     Timeline (Régua) - Área Central
+     ========================= */
+  /* Container da timeline com grid de 5 slots por linha */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 80px); /* Cada slot tem 80px de largura */
+    gap: 20px;
+    justify-content: center;
+    margin: 20px auto;
+  }
+  
+  .timeline-slot {
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border: 3px dashed #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;  /* Garante que a imagem não ultrapasse o contêiner */
+  }
+  
+  .timeline-slot.correct {
+    border-color: green;
+  }
+  
+  .timeline-artwork {
+    width: 100%;  /* Preenche o slot */
+    height: 100%;
+    object-fit: cover;  /* Garante que a imagem se ajuste sem distorção */
+  }
+  
+  /* =========================
+     Scoreboard
+     ========================= */
+  .scoreboard {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .scoreboard ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .scoreboard li {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  /* =========================
+     Modal de Fim de Jogo
+     ========================= */
+  .winner-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .winner-modal h2 {
+    color: #4caf50;
+  }
+  
+  .winner-modal p {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .winner-modal button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .winner-modal button:hover {
+    background-color: #1565c0;
+  }
+  
+  /* =========================
+     Cartão de Obra (Draggable Artwork)
+     ========================= */
+     .artwork-card {
+      width: 100px; /* Ajuste conforme necessário */
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    
+    .artwork-image-container {
+      width: 100%;
+      height: 70px; /* Define uma altura fixa para a imagem; ajuste conforme necessário */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden; /* Garante que a imagem não ultrapasse os limites */
+    }
+    
+    .artwork-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* Mantém a proporção sem cortar a imagem */
+      border-radius: 4px;
+    }
+    
+    .artwork-title {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #333;
+    }
+  
+  /* =========================
+     Outros Estilos
+     ========================= */
+  .player-name {
+    font-weight: bold;
+  }
+  

@@ -1,6 +1,6 @@
 // screens/home/index.jsx
 import React, { useState } from "react";
-import "./styles.css"; // Crie e ajuste esse arquivo conforme seu design
+import "./styles.css";
 
 function HomeScreen({ onStartGame }) {
   const [playerName, setPlayerName] = useState("");
@@ -11,6 +11,13 @@ function HomeScreen({ onStartGame }) {
     if (!trimmedName) return;
     setPlayers((prevPlayers) => [...prevPlayers, trimmedName]);
     setPlayerName("");
+  };
+
+  // Adiciona o jogador ao pressionar Enter
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleAddPlayer();
+    }
   };
 
   const handleStartGame = () => {
@@ -28,6 +35,7 @@ function HomeScreen({ onStartGame }) {
           placeholder="Digite o nome do jogador"
           value={playerName}
           onChange={(e) => setPlayerName(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <button onClick={handleAddPlayer}>Adicionar Jogador</button>
       </div>

@@ -1,11 +1,16 @@
+// screens/game/card/index.jsx
 import React from "react";
-import "./styles.css"
+import "./styles.css";
 
 function ArtworkCard({ artwork }) {
   return (
     <div className="artwork-card">
-      <img src={artwork.image} alt={artwork.title} />
-      <p>{artwork.title}</p>
+      <div className="artwork-image-container">
+        <img src={artwork.image} alt={artwork.title} className="artwork-image" />
+      </div>
+      <div className="artwork-title">
+        {artwork.title}
+      </div>
     </div>
   );
 }
