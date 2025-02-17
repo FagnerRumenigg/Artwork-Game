@@ -1,0 +1,17 @@
+.timeline-artwork {
+  width: 100%;  /* Preenche o slot */
+  height: 100%;
+  object-fit: cover;  /* Garante que a imagem se ajuste sem distorção */
+}
+
+.timeline-slot {
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  border: 3px dashed #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;  /* Garante que a imagem não ultrapasse o contêiner */
+}
